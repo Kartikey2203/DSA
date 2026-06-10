@@ -7,7 +7,7 @@ public:
             int rest = target - nums[i];
 
             if(mp.find(rest) != mp.end()){
-                return {i, mp[rest]};
+                return {mp[rest],i};
             }
 
             // Insert into hashmap 
