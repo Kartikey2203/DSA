@@ -1,7 +1,7 @@
 class Solution {
 public:
     int climbStairs(int n, unordered_map<int, int>& memo) {
-        if ( n <= 2) {
+        if ( n == 2 || n==1) {
             return n;
         }
         if (memo.find(n) == memo.end()) {
