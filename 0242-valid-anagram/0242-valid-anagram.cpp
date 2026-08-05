@@ -1,16 +1,19 @@
 class Solution {
 public:
     bool isAnagram(string s, string t) {
-        int freq_table[256]={0};
+        int freq_table[26]={0};
+        if(t.size()!= s.size()){
+            return false;
+        }
         for(int i=0; i<s.size(); i++)
         {
-            freq_table[s[i]]++;
+            freq_table[s[i]-'a']++;
+            freq_table[t[i]-'a']--;
         }
-        for(int i=0; i<t.size(); i++)
-        {
-            freq_table[t[i]]--;
-        }
-         for(int i=0; i<256; i++)
+        // for(int i=0; i<t.size(); i++)
+        // {
+        // }
+         for(int i=0; i<26; i++)
          {
             if(freq_table[i]!=0)
             {
