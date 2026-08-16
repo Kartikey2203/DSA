@@ -9,7 +9,7 @@ bool sol_tab(vector<int>& nums,int tar){
     int inc=0,ex;
     for(int i=n-1; i>=0; i--){
         for(int j=tar; j>=0; j--){
-            inc=0;
+            // inc=0;
             
             if(j+nums[i]<=tar){
                 inc=dp[i+1][j+nums[i]];
