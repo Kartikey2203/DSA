@@ -1,19 +1,30 @@
 class Solution {
 public:
     bool mem(vector<int>& nums,int tar,int i,vector<vector<int>>& dp){
-        if(tar==0)
-            return true;
-        else
-        if(tar<0 || i>=nums.size())
-            return false;
-        if(dp[i][tar]!=-1){
-            return dp[i][tar];
-        }
-        int inc=mem(nums,tar-nums[i],i+1,dp);
-        int exc=mem(nums,tar,i+1,dp);
+        // if(k==0)
+        //     return true;
+        // else
+        // if(k<0 || j>=nums.size())
+        //     return false;
+        // if(dp[j][k]!=-1){
+        //     return dp[j][k];
+        // }
+        for(int l=0; l<=nums.size(); l++)
+            dp[l][0]=1;
+        for(int j=i-1; j>=0; j--){
+            for(int k=tar; k>=0; k--){
+       
+                int inc = 0;
 
-        dp[i][tar]=(inc || exc);
-        return dp[i][tar];
+                if (k >= nums[j])
+                    inc = dp[j + 1][k - nums[j]];
+        int exc=dp[j+1][k];
+
+        dp[j][k]=(inc || exc);
+                
+            }
+        }
+        return dp[0][tar];
     }
     bool canPartition(vector<int>& nums) {
         int sum=0,tar;
@@ -22,7 +33,8 @@ public:
         if(sum%2)
             return false;
         tar=sum/2;
-        vector<vector<int>> dp(nums.size()+1,vector<int>(tar+1,-1));
-            return mem(nums,tar,0,dp);
+        vector<vector<int>> dp(nums.size()+1,vector<int>(tar+1,0));
+            return mem(nums,tar,nums.size(),dp);
     }
+    
 };
