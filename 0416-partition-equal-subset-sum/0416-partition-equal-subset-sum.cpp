@@ -1,35 +1,28 @@
 class Solution {
 public:
-bool sol_tab(vector<int>& nums,int tar){
-    int n=nums.size();
-    vector<vector<int>> dp(n+2,vector<int>(tar+2,0));
-    for(int i=0; i<=n; i++){
-        dp[i][tar]=1;
-    }
-    int inc=0,ex;
-    for(int i=n-1; i>=0; i--){
-        for(int j=tar; j>=0; j--){
-            // inc=0;
-            
-            if(j+nums[i]<=tar){
-                inc=dp[i+1][j+nums[i]];
-            }
-            ex=dp[i+1][j];
-            dp[i][j]=(inc|| ex);
+    bool mem(vector<int>& nums,int tar,int i,vector<vector<int>>& dp){
+        if(tar==0)
+            return true;
+        else
+        if(tar<0 || i>=nums.size())
+            return false;
+        if(dp[i][tar]!=-1){
+            return dp[i][tar];
         }
+        int inc=mem(nums,tar-nums[i],i+1,dp);
+        int exc=mem(nums,tar,i+1,dp);
+
+        dp[i][tar]=(inc || exc);
+        return dp[i][tar];
     }
-    return dp[0][0];
-}
     bool canPartition(vector<int>& nums) {
-        int totsum=0,tar;
-        for(int i: nums)
-        {
-            totsum+=i;
-        }
-        if(totsum%2)
-        return false;
-        tar=totsum/2;
-        return sol_tab(nums,tar);
-        
+        int sum=0,tar;
+        for(int num:nums)
+            sum+=num;
+        if(sum%2)
+            return false;
+        tar=sum/2;
+        vector<vector<int>> dp(nums.size()+1,vector<int>(tar+1,-1));
+            return mem(nums,tar,0,dp);
     }
 };
