@@ -1,5 +1,6 @@
 class Solution {
 public:
+    int ans=0;
     int sol_mem(string& c1,string& c2,int s1,int s2,int x,int y,vector<vector<int>>& dp){
         if(s1==x || s2==y){
             return 0;
@@ -7,7 +8,6 @@ public:
         if(dp[x][y]!=-1){
             return dp[x][y];
         }
-    int ans=0;
         if(x<s1 && y<s2 && c1[x]==c2[y]){
             ans=1+sol_mem(c1,c2,s1,s2,x+1,y+1,dp);
         }
