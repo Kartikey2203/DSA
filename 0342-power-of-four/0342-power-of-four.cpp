@@ -8,7 +8,7 @@ public:
             // if(n<4)
             //  return false ;
          }
-         if(n==4 || n==1)
+         if( n==1)
          return true;
          return false;
     }
