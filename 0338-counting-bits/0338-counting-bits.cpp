@@ -1,21 +1,12 @@
 class Solution {
 public:
     vector<int> countBits(int n) {
-        vector<int> ans;
+        vector<int> ans(n+1,0);
        for(int j=0; j<=n; j++){
-         int count=0;
-         int i=j;
-        while(i>=1){
-            // if(dp[i]==i){
-            //     ans.push_back()
-            // }
-            if(i%2==1)
-            count++;
-            i=i>>1;
-            // cout<<i;
+        ans[j]=ans[j>>1]+(1 & j);
         }
-        ans.push_back(count);
-       } 
+        // ans.push_back(count);
+       
        return ans;
     }
 };
