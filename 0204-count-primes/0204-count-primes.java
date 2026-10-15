@@ -1,6 +1,6 @@
 class Solution {
     public int countPrimes(int n) {
-        Boolean b[]=new Boolean[n];
+        Boolean b[]=new Boolean[n+1];
         Arrays.fill(b,true);
         if(n<=2) return 0;
         b[0]=false;
